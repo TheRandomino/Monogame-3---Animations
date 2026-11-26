@@ -29,8 +29,9 @@ namespace Monogame_3___Animations
         SoundEffect tribbleCoo;
         bool prevTribbleTouch;
         bool tribbleTouch;
-        int tribbleOrangeRandSize, tribbleBrownRandYPos, tribbleBrownRandXPos;
+        int tribbleOrangeRandSize, tribbleBrownRandYPos, tribbleBrownRandXPos, tribbleBrownColorMaskNum;
         Random generator = new Random();
+        Color tribbleBrownColorMask;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -91,6 +92,31 @@ namespace Monogame_3___Animations
             tribbleCreamRect.Y += (int)tribbleCreamSpeed.Y;
             tribbleBrownRect.X = tribbleBrownRandXPos;
             tribbleBrownRect.Y = tribbleBrownRandYPos;
+            tribbleBrownColorMaskNum = generator.Next(1, 7);
+            if (tribbleBrownColorMaskNum == 1)
+            {
+                tribbleBrownColorMask = Color.Red;
+            }
+            else if (tribbleBrownColorMaskNum == 2)
+            {
+                tribbleBrownColorMask = Color.Green;
+            }
+            else if (tribbleBrownColorMaskNum == 3)
+            {
+                tribbleBrownColorMask = Color.Blue;
+            }
+            else if (tribbleBrownColorMaskNum == 4)
+            {
+                tribbleBrownColorMask = Color.Cyan;
+            }
+            else if (tribbleBrownColorMaskNum == 5)
+            {
+                tribbleBrownColorMask = Color.Magenta;
+            }
+            else
+            {
+                tribbleBrownColorMask = Color.Yellow;
+            }
 
             if (tribbleGreyRect.X >= window.Width + tribbleGreyRect.Width)
             {
@@ -140,7 +166,7 @@ namespace Monogame_3___Animations
             _spriteBatch.Draw(tribbleGreyTexture, tribbleGreyRect, Color.White);
             _spriteBatch.Draw(tribbleOrangeTexture, tribbleOrangeRect, Color.White);
             _spriteBatch.Draw(tribbleCreamTexture, tribbleCreamRect, Color.White);
-            _spriteBatch.Draw(tribbleBrownTexture, tribbleBrownRect, Color.White);
+            _spriteBatch.Draw(tribbleBrownTexture, tribbleBrownRect, tribbleBrownColorMask);
 
             _spriteBatch.End();
             // TODO: Add your drawing code here
